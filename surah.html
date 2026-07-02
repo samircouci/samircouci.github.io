@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>السورة</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1 id="surah-name">📖 السورة</h1>
+<p>رواية حفص عن عاصم</p>
+</header>
+
+<main class="card">
+
+<div id="surah-content">
+
+<p style="text-align:center;color:gold;">
+جاري تحميل السورة...
+</p>
+
+</div>
+
+<a href="quran.html" class="button">
+⬅ العودة إلى فهرس السور
+</a>
+
+</main>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+
+const id = params.get("id") || 1;
+
+document.getElementById("surah-name").innerHTML =
+"📖 السورة رقم " + id;
+
+ fetch("https://api.alquran.cloud/v1/surah/" + id)
+.then(response => response.json())
+.then(data => {
+
+document.getElementById("surah-name").innerHTML =
+"📖 " + data.data.englishName + " - " + data.data.name;
+
+let html = "";
+
+data.data.ayahs.forEach(ayah => {
+html += `
+<p style="font-size:28px;line-height:2.4;text-align:center;padding:12px;">
+${ayah.text}
+<span style="color:gold;">﴿${ayah.numberInSurah}﴾</span>
+</p>
+`;
+});
+
+document.getElementById("surah-content").innerHTML = html;
+
+});
+       
+
+</script>
+
+</body>
+</html>
