@@ -9,20 +9,22 @@
 <link rel="stylesheet" href="style.css">
 
 <style>
+
 .ayah{
 font-size:24px;
-line-height:2.2;
+line-height:2.3;
 text-align:center;
-padding:15px;
-margin:10px 0;
+padding:20px;
+margin:15px 0;
 background:rgba(255,255,255,0.05);
-border-radius:15px;
+border-radius:20px;
 border:1px solid rgba(255,255,255,0.08);
 }
 
 .ayah span{
 color:#FFD700;
 font-weight:bold;
+font-size:22px;
 }
 
 .loading{
@@ -31,6 +33,7 @@ color:#FFD700;
 font-size:18px;
 padding:20px;
 }
+
 </style>
 
 </head>
@@ -64,29 +67,34 @@ fetch("https://api.alquran.cloud/v1/surah/" + id)
 .then(data => {
 
 document.getElementById("surah-name").innerHTML =
-"📖 " + data.data.englishName + " - " + data.data.name;
+"📖 " + data.data.name;
 
 let html = "";
 
 data.data.ayahs.forEach(ayah => {
+
 html += `
 <div class="ayah">
 ${ayah.text}
-<br>
+<br><br>
 <span>﴿${ayah.numberInSurah}﴾</span>
 </div>
 `;
+
 });
 
 document.getElementById("surah-content").innerHTML = html;
 
 })
 .catch(() => {
+
 document.getElementById("surah-content").innerHTML =
 "<p style='color:red;text-align:center;'>فشل تحميل السورة</p>";
+
 });
 
 </script>
 
 </body>
+
 </html>
