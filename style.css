@@ -278,4 +278,50 @@ font-size:32px;
 padding:18px;
 }
 }
+.ayah{
+font-size:24px;
+line-height:2.2;
+text-align:center;
+padding:15px;
+margin:12px 10px;
+background:rgba(255,255,255,0.06);
+border-radius:18px;
+border:1px solid rgba(255,255,255,0.08);
+box-shadow:0 8px 20px rgba(0,0,0,0.25);
+transition:0.3s;
+}
+
+.ayah:hover{
+transform:scale(1.02);
+border-color:#FFD700;
+box-shadow:0 10px 25px rgba(255,215,0,0.15);
+}
+
+.ayah span{
+color:#FFD700;
+font-weight:bold;
+font-size:16px;
+display:inline-block;
+margin-top:10px;
+}
+
+.loading{
+text-align:center;
+color:#FFD700;
+font-size:18px;
+padding:25px;
+}
+
+/* تحسين عنوان السورة */
+header h1{
+color:#FFD700;
+text-shadow:0 0 10px rgba(255,215,0,0.4);
+}
+
+/* زر العودة */
+.button{
+display:block;
+margin-top:25px;
+text-align:center;
+}
 
