@@ -360,3 +360,9 @@ text-align:center;
   color: white;
   opacity: 0.8;
 }
+.back-btn {
+  background: #1b1b24;
+  color: gold;
+  border: 1px solid gold;
+  border-radius: 12px;
+}
