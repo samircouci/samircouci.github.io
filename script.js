@@ -8,7 +8,8 @@ fetch("https://api.alquran.cloud/v1/surah")
 
       html += `
       <a href="surah.html?id=${surah.number}" class="button">
-        ${surah.number}. ${surah.name}
+        <span>${surah.number}</span>
+<span>${surah.name}</span>
       </a>
       `;
 
