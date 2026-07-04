@@ -6,84 +6,110 @@ font-family:Arial,sans-serif;
 }
 
 body{
-background:#0f0f14;
-color:white;
+background:linear-gradient(180deg,#08131d,#12232e,#0b1f16);
+color:#fff;
 direction:rtl;
+min-height:100vh;
 }
 
 header{
 text-align:center;
-padding:30px 20px;
-background:linear-gradient(135deg,#4b2a7b,#111);
-border-bottom:2px solid gold;
+padding:35px 20px;
+background:rgba(255,255,255,0.06);
+backdrop-filter:blur(12px);
+border-bottom:1px solid rgba(255,215,0,.35);
+box-shadow:0 8px 30px rgba(0,0,0,.35);
 }
 
 header img{
-width:120px;
-height:120px;
+width:130px;
+height:130px;
 border-radius:50%;
-border:3px solid gold;
+border:4px solid gold;
+padding:4px;
+background:white;
+box-shadow:0 0 25px rgba(255,215,0,.45);
 margin-bottom:15px;
 object-fit:cover;
 }
 
 header h1{
-font-size:32px;
+font-size:34px;
 color:gold;
-margin-bottom:10px;
+margin-bottom:8px;
+text-shadow:0 0 12px rgba(255,215,0,.4);
 }
 
 header p{
-color:#ddd;
+color:#d7d7d7;
+font-size:17px;
 }
 
-.card{
-background:#1b1b24;
-margin:20px;
-padding:20px;
-border-radius:20px;
+main{
+width:92%;
+max-width:700px;
+margin:auto;
+padding:20px 0;
 }
 
+.card,
+.welcome-card{
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(14px);
+border:1px solid rgba(255,255,255,.12);
+border-radius:22px;
+padding:22px;
+margin-bottom:22px;
+box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+.welcome-card h2,
 .welcome{
-font-size:24px;
 color:gold;
 text-align:center;
 margin-bottom:15px;
+font-size:26px;
 }
 
+.welcome-card p,
 .desc{
 text-align:center;
-color:#ccc;
-line-height:1.8;
-margin-bottom:25px;
+line-height:1.9;
+color:#ececec;
 }
 
 .menu{
 display:flex;
 flex-direction:column;
-gap:15px;
+gap:16px;
 }
 
 .button{
 display:block;
 text-decoration:none;
-background:#5b21b6;
-color:white;
-padding:15px;
+padding:16px;
 text-align:center;
-border-radius:15px;
-font-size:20px;
+font-size:19px;
 font-weight:bold;
-transition:0.3s;
+color:white;
+border-radius:18px;
+background:linear-gradient(135deg,#16a34a,#0f766e);
+box-shadow:0 8px 18px rgba(0,0,0,.25);
+transition:all .25s ease;
 }
 
 .button:hover{
-background:#7c3aed;
-transform:scale(1.03);
+transform:translateY(-3px);
+box-shadow:0 14px 28px rgba(0,0,0,.35);
+background:linear-gradient(135deg,#22c55e,#14b8a6);
+}
+
+.button:active{
+transform:scale(.98);
 }
 
 footer{
-text-align:center;
+margin-top:30px;
 padding:20px;
-color:#999;
-}
+text-align:center;
+color:#c
