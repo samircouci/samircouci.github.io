@@ -1,1 +1,125 @@
 
+/*==========================
+      GENERAL
+==========================*/
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+direction:rtl;
+
+font-family:"Amiri",serif;
+
+background:
+linear-gradient(180deg,#06080d,#0d1117,#161b22);
+
+color:#fff;
+
+min-height:100vh;
+
+}
+
+/*==========================
+      HEADER
+==========================*/
+
+.header{
+
+text-align:center;
+
+padding:35px 20px;
+
+}
+
+.header h1{
+
+font-size:38px;
+
+color:#FFD700;
+
+margin-bottom:10px;
+
+text-shadow:0 0 10px rgba(255,215,0,.35);
+
+}
+
+.header p{
+
+font-size:18px;
+
+color:#ddd;
+
+}
+
+/*==========================
+      SEARCH
+==========================*/
+
+.search-box{
+
+width:92%;
+
+max-width:650px;
+
+margin:20px auto;
+
+}
+
+#search{
+
+width:100%;
+
+padding:16px;
+
+border:none;
+
+border-radius:16px;
+
+outline:none;
+
+font-size:18px;
+
+background:#222;
+
+color:#fff;
+
+border:1px solid rgba(255,215,0,.25);
+
+}
+
+#search:focus{
+
+border-color:#FFD700;
+
+}
+
+/*==========================
+      SURAH LIST
+==========================*/
+
+#surah-list{
+
+width:92%;
+
+max-width:700px;
+
+margin:auto;
+
+display:flex;
+
+flex-direction:column;
+
+gap:15px;
+
+padding-bottom:40px;
+
+}
