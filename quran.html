@@ -1,1 +1,258 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>فهرس السور</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+.quran-page{
+
+max-width:700px;
+
+margin:auto;
+
+padding:20px;
+
+}
+
+.quran-title{
+
+text-align:center;
+
+font-size:42px;
+
+color:#FFD54A;
+
+margin:20px 0;
+
+font-family:'Amiri',serif;
+
+}
+
+.search-box{
+
+margin:25px 0;
+
+}
+
+.search-box input{
+
+width:100%;
+
+padding:18px;
+
+font-size:20px;
+
+border-radius:18px;
+
+border:2px solid #caa33b;
+
+background:#161923;
+
+color:white;
+
+outline:none;
+
+}
+
+#surah-list{
+
+display:flex;
+
+flex-direction:column;
+
+gap:18px;
+
+}
+
+.surah-card{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+background:#191c25;
+
+border:2px solid #caa33b;
+
+border-radius:24px;
+
+padding:20px;
+
+text-decoration:none;
+
+color:white;
+
+transition:.3s;
+
+}
+
+.surah-card:hover{
+
+background:#222733;
+
+transform:translateY(-3px);
+
+}
+
+.surah-name{
+
+font-family:'Amiri',serif;
+
+font-size:32px;
+
+color:#FFD54A;
+
+}
+
+.surah-number{
+
+width:52px;
+
+height:52px;
+
+border-radius:50%;
+
+background:#FFD54A;
+
+color:#111;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:22px;
+
+font-weight:bold;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="quran-page">
+
+<h1 class="quran-title">
+
+📖 فهرس السور
+
+</h1>
+
+<div class="search-box">
+
+<input
+
+id="search"
+
+placeholder="ابحث عن سورة..."
+
+>
+
+</div>
+
+<div id="surah-list">
+
+<div style="text-align:center">
+
+جاري تحميل السور...
+
+</div>
+
+</div>
+  <script>
+
+const list = document.getElementById("surah-list");
+
+const search = document.getElementById("search");
+
+let surahs=[];
+
+fetch("https://api.alquran.cloud/v1/surah")
+
+.then(r=>r.json())
+
+.then(data=>{
+
+surahs=data.data;
+
+draw(surahs);
+
+})
+
+.catch(()=>{
+
+list.innerHTML="<h2 style='text-align:center;color:#FFD54A;'>تعذر تحميل السور</h2>";
+
+});
+
+function draw(items){
+
+let html="";
+
+items.forEach(s=>{
+
+html+=`
+
+<a class="surah-card"
+
+href="surah.html?id=${s.number}">
+
+<div class="surah-name">
+
+${s.name}
+
+</div>
+
+<div class="surah-number">
+
+${s.number}
+
+</div>
+
+</a>
+
+`;
+
+});
+
+list.innerHTML=html;
+
+}
+
+search.addEventListener("input",function(){
+
+let word=this.value.trim();
+
+let result=surahs.filter(s=>
+
+s.name.includes(word)
+
+);
+
+draw(result);
+
+});
+
+</script>
+  </div>
+
+</body>
+
+</html>
