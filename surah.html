@@ -5,47 +5,106 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
 
-<title>السورة</title>
+<title>القرآن الكريم</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap"
+rel="stylesheet">
 
 <style>
 
-.mushaf{
+body{
 
-max-width:900px;
+background:#0c0d12;
 
-margin:auto;
+margin:0;
 
-padding:20px;
+padding:0;
+
+font-family:'Amiri',serif;
+
+}
+
+.top-bar{
+
+position:sticky;
+
+top:0;
+
+background:#151821;
+
+padding:18px;
+
+border-bottom:2px solid #caa33b;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+z-index:999;
+
+}
+
+.back{
+
+text-decoration:none;
+
+color:#FFD54A;
+
+font-size:22px;
+
+font-weight:bold;
 
 }
 
 #surah-name{
 
+color:#FFD54A;
+
+font-size:34px;
+
 text-align:center;
 
-font-size:36px;
+flex:1;
 
-color:#FFD700;
+}
 
-margin:25px 0;
+#content{
+
+max-width:900px;
+
+margin:auto;
+
+padding:25px;
 
 }
 
 .ayah{
 
-font-size:34px;
+font-size:36px;
 
-line-height:2.4;
+line-height:2.5;
 
-text-align:center;
+text-align:justify;
 
-margin:20px 0;
+background:#161922;
 
-color:#fff;
+margin-bottom:18px;
+
+padding:25px;
+
+border-radius:22px;
+
+border:1px solid rgba(255,215,0,.18);
+
+box-shadow:0 5px 15px rgba(0,0,0,.25);
 
 }
 
@@ -57,47 +116,21 @@ align-items:center;
 
 justify-content:center;
 
-width:38px;
+width:42px;
 
-height:38px;
+height:42px;
 
-border:2px solid #FFD700;
+margin-right:12px;
 
 border-radius:50%;
 
-font-size:16px;
-
-color:#FFD700;
-
-margin-right:8px;
-
-margin-left:8px;
-
-vertical-align:middle;
-
-}
-
-.back{
-
-display:block;
-
-width:220px;
-
-margin:40px auto;
-
-padding:14px;
-
-text-align:center;
-
-text-decoration:none;
-
-background:#FFD700;
+background:#FFD54A;
 
 color:#111;
 
-font-weight:bold;
+font-size:18px;
 
-border-radius:14px;
+font-weight:bold;
 
 }
 
@@ -107,51 +140,64 @@ border-radius:14px;
 
 <body>
 
-<div class="mushaf">
+<div class="top-bar">
 
-<h1 id="surah-name">
+<a class="back"
 
-جاري التحميل...
+href="quran.html">
 
-</h1>
-
-<div id="content">
-
-</div>
-
-<a class="back" href="index.html">
-
-⬅ العودة للفهرس
+← رجوع
 
 </a>
 
+<div id="surah-name">
+
+جاري التحميل...
+
 </div>
 
+</div>
+
+<div id="content">
+
+<div style="text-align:center">
+
+جاري تحميل السورة...
+
+</div>
+
+</div>
 <script>
 
-const id=new URLSearchParams(location.search).get("id")||1;
+const id = new URLSearchParams(window.location.search).get("id") || 1;
 
-fetch("https://api.alquran.cloud/v1/surah/"+id)
+const surahName = document.getElementById("surah-name");
 
-.then(r=>r.json())
+const content = document.getElementById("content");
 
-.then(data=>{
+fetch("https://api.alquran.cloud/v1/surah/" + id + "/quran-uthmani")
 
-document.getElementById("surah-name").innerHTML=data.data.name;
+.then(response => response.json())
 
-let html="";
+.then(result => {
 
-data.data.ayahs.forEach(a=>{
+const surah = result.data;
 
-html+=`
+surahName.innerHTML = surah.englishName + " - " + surah.name;
+
+let html = "";
+
+surah.ayahs.forEach(ayah => {
+
+html += `
 
 <div class="ayah">
 
-${a.text}
+${ayah.text}
 
 <span class="ayah-number">
 
-${a.numberInSurah}
+${ayah.numberInSurah}
 
 </span>
 
@@ -161,12 +207,30 @@ ${a.numberInSurah}
 
 });
 
-document.getElementById("content").innerHTML=html;
+content.innerHTML = html;
+
+})
+
+.catch(error => {
+
+content.innerHTML = `
+
+<div style="text-align:center;
+padding:40px;
+font-size:22px;
+color:#FFD54A;">
+
+تعذر تحميل السورة
+
+</div>
+
+`;
+
+console.log(error);
 
 });
 
 </script>
-
 </body>
 
 </html>
